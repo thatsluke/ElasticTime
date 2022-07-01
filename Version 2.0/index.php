@@ -5,19 +5,11 @@
   <title>Elastic Time - An responsive metric time based on the natural rhythm of our sun cycles</title>
   <meta property="og:url" content="https://elastictime.me" />
   <meta property="og:type" content="app" />
-  <meta property="og:title" content="Check out Luke's Elastic Time Machine! Now with 10K Moments of Day and 10K Moments of Night." />
+  <meta property="og:title" content="Check out Steve's Elastic Time Machine! Now with 10K Moments of Day and 10K Moments of Night." />
   <meta name="author" content="Luc Amstrong">
-  <meta property="og:description"  content="Symetry all the way down! What would make time feel better to you? Who designed our clocks?  What impact does this simple clock have on our lives?  What if we aligned our lives again around the breath of the sun?" />
+  <meta property="og:description"  content="Symetry all the way down! What would make time feel better to you? Who designed our clocks?  What impact does this simple clock have on our lives?" />
   <meta property="og:image" content="img/screenshot.png" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-<meta charset="utf-8" name="viewport"
-content= "width=device-width, initial-scale=1.0">
-<style>
-@media (orientation: landscape) {
-    body {
-width: device-width;
-}}
-</style>
 
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
   <script src="https://elastictime.me/suncalc-master/suncalc.js"></script>
@@ -51,16 +43,14 @@ var nGoldenTime = times.goldenHour.getHours() + ':' + times.goldenHour.getMinute
 var nNadirTime = times.nadir.getHours() + ':' + times.nadir.getMinutes(); 
 var begin = ndawnStr;
 var end = nduskStr;
-
 setTimeout(function startTime() {
   var slices = 10;
-  // how many slices of day and night
   var ms = 1440 * 60 * 1000;
   var dawn = begin * 60 * 1000;
   var dusk = end * 60 * 1000;
   var day = false;
   var now = new Date();
-  var born = new Date("March 19, 1981 00:00:01");
+  var born = new Date("August 21, 1947 00:00:01");
   // var midnight = now.setHours(0,0,0,0);
   var midnight = moment().startOf("day").toDate();
   var day, currentMoment;
@@ -92,8 +82,6 @@ setTimeout(function startTime() {
     var currentMoment = percentOfDayPast * slices;
     var sliceOnly = Math.floor(currentMoment);
     var sliceAdj = sliceOnly + 1;
-    var blockOnly = Math.floor(currentMoment * 10);
-    var blockAdj = blockOnly +1;
     var actionOnly = Math.floor(currentMoment * 10) % 10;
     var actionAdj = actionOnly + 1;
     var fleetingMoment = Math.floor(currentMoment * 1000) % 100;
@@ -115,8 +103,6 @@ setTimeout(function startTime() {
     var fleetCurrentMoment = Math.floor(currentMoment * 100000) % 1000000;
     var sliceOnly = Math.floor(currentMoment);
     var sliceAdj = sliceOnly + 1;
-    var blockOnly = Math.floor(currentMoment * 10);
-    var blockAdj = blockOnly +1;
     var actionOnly = Math.floor(currentMoment * 10) % 10;
     var actionAdj = actionOnly + 1;
   }
@@ -127,12 +113,11 @@ setTimeout(function startTime() {
   document.getElementById('nightMoment').innerHTML = "night slice</br>" + nightMomentMinutes + " minutes " + nightMomentSeconds + " seconds";
   document.getElementById('dayAction').innerHTML = "day action</br>" + dayActionMinutes + " minutes " + dayActionSeconds + " seconds";
   document.getElementById('nightAction').innerHTML = "night action</br>" + nightActionMinutes + " minutes " + nightActionSeconds + " seconds";
-//  document.getElementById('day').innerHTML =  (day ? "☀ day time / act " + sliceAdj + " / action " + actionAdj : "☽ night time / rest " + sliceAdj + " / respite " + actionAdj);
-  document.getElementById('day').innerHTML =  (day ? "<span style='display: inline-block; font-size: 25px; padding-top: 40px; padding-bottom: 10px; color: #ccc; font-weight: bold;'> block " + blockAdj + "</span></br>☀ day time" : "<span style='display: inline-block; font-size: 25px; padding-top: 40px; padding-bottom: 10px; color: #ccc; font-weight: bold;'> block " + blockAdj + "</span></br>☽ night time ");
+  document.getElementById('day').innerHTML =  (day ? "☀ day time / act " + sliceAdj + " / action " + actionAdj : "☽ night time / rest " + sliceAdj + " / respite " + actionAdj);
   // document.getElementById('slice').innerHTML =  "slice " + sliceAdj + " / ";
  // document.getElementById('action').innerHTML =  "action " + actionAdj;
  document.getElementById('detail').innerHTML =  "<b>the fleeting now</b> </br>" + detail + "</br></br>";
- document.getElementById('fleet').innerHTML =  "<b style='display: inline-block; font-size: 35px; margin-top: 20px;'>moment</b></br><span style='text-align:center;font-size: 150px; font-weight:bold;color: #ccc;'>" + fleetingMomentAdj + "</span></br></br>";
+ document.getElementById('fleet').innerHTML =  "<b style='display: inline-block; font-size: 25px; margin-top: 20px;'>moment</b></br><span style='text-align:center;font-size: 150px; font-weight:bold;color: #ccc;'>" + fleetingMomentAdj + "</span></br></br>";
  var t = setTimeout(startTime, 50);
 
 }, 1000);
@@ -155,15 +140,15 @@ navigator.geolocation.getCurrentPosition(success, error);
 
 <body style="position:relative; margin: 0; padding:0; background: #555;" onload="geoFindMe();startTime()">
   <div id="container" style="text-align: center; font-family: Sans-Serif; background: #000; color: #777;">
-    <div id="purpose" style="text-align: center; font-family: Sans-Serif; font-size: 21px; font-weight:bold; color: #000;"><?php include 'purposekey.php';?></div>
+    <div id="day" style="padding: 10px; font-size: 14px; border-bottom: 2px solid #333; font-weight:bold; font-style:italic;">&nbsp;</div>
+    <div id="purpose" style="text-align: center; font-family: Sans-Serif; font-size: 21px; font-weight:bold;color: #ccc;"><?php include 'purposekey.php';?></div>
 <!--<div id="slice" style="text-align: center; font-family: Sans-Serif; font-size: 16px; font-weight:bold;color: #ccc;display: inline-block;">&nbsp;</div>
   <div id="action" style="padding-bottom: 10px; padding-top: 10px; font-size: 16px; font-weight: bold;display: inline-block;">&nbsp;</div>-->
-  <div id="fleet" style="background: #222; margin: 5px auto; padding: 50px; text-align: center; border-radius: 75%; height: 250px; width: 250px; font-size: 14px; color: #777;"></div>
-<div id="day" style="position: relative; z-index: 10; background: #000; border: 4px solid #222; margin: 5px auto; margin-top: -75px; padding: 20px; text-align: center; border-radius: 50%; height: 125px; width: 125px; font-size: 14px; color: #777;">&nbsp;</div>
+  <div id="fleet" style="background: #111; margin: 5px auto; padding: 50px; text-align: center; border-radius: 50%; height: 250px; width: 250px; border: 2px solid #222; font-size: 14px; color: #777;"></div>
 <!--<div id="yearday" style="padding: 10px; font-size: 36px; font-weight: bold; margin-top: 30px;">day <?php echo date("z") + 1; ?></div>
 <div id="cycle" style="padding: 10px; font-size: 24px; font-weight: bold; ">cycle <?php echo date("W"); ?></div>
 <div id="year" style="padding: 10px; font-size: 24px; font-weight: bold; padding-bottom: 30px;">year <?php echo date("o") + 1; ?></div>-->
-<div id="birthYear" style='color: #000; border-radius: 50%; background: #555; border-bottom: none; width: 100%; padding-top:25px; margin: 20px auto; border-bottom-left-radius: 0px;border-bottom-right-radius: 0px; font-size: 14px;'><?php include 'birthyear.php';?><?php include 'ritualkey.php';?>
+<div id="birthYear" style="padding: 10px; font-size: 12px; line-height: 21px; font-weight: bold; padding-bottom: 30px;"><?php include 'birthyear.php';?><?php include 'ritualkey.php';?>
 </div>
 </div>
 <div id="styleContainer" style="font-family: Sans-Serif; font-size: 12px; font-style:italic; color: #000; background:#555; text-align: center; padding: 20px;">
@@ -174,12 +159,12 @@ navigator.geolocation.getCurrentPosition(success, error);
     <div id="nightAction" style="padding: 10px;">&nbsp;</div>
     <div id="nightMoment" style="padding: 10px;">&nbsp;</div>
   </div>
+  <div id="detail" style="padding: 10px;"></div>
   <div style="font-weight: bold;">Logistic Time</div>
   <div id="now" style="margin-bottom: 25px;">&nbsp;</div>
-   <div id="detail" style="padding: 10px;"></div>
   <div id="detail2"></div>
   <div id="out" style=""></div>
-  <div><a href="https://calicommons.net/lucluke/DC/content.php?singlePostID=1370"><img src="img/lucluke-logo-web.png" alt="ElasticTime.me by LucLuke" style="width:75px; border:none; opacity: .6;"/></a></div>
+  <div><a href="https://calicommons.net/lucluke/DC/content.php?singlePostID=1370"><img src="img/lucluke-logo-web.png" alt="ElasticTime.me by LucLuke" style="width:75px; border:none;"/></a></div>
 </div>
 </body>
 </html>
